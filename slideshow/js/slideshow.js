@@ -1,11 +1,14 @@
 /*eslint-env browser*/
+var slider = window.document.getElementById('slider');
+
+// var sliderPos = slider.value;
 
 // REWRITTEN TO TAKE ADVANTAGE OF CLOSURES
 var createSlideshow = function () {
     "use strict";
     // PRIVATE VARIABLES AND FUNCTIONS
-    var timer, play = true, nodes, img, stopSlideShow, displayNextImage, setPlayText;
-    
+    var timer, play = true, nodes, img, stopSlideShow, displayNextImage, setPlayText,speed ;
+    speed = 2000;
     nodes = { image: null, caption: null };
     img = { cache: [], counter: 0 };
     
@@ -46,9 +49,25 @@ var createSlideshow = function () {
                 nodes.image = arguments[0];
                 nodes.caption = arguments[1];
             }
-            timer = setInterval(displayNextImage, 2000);
+          
+            // timer = setInterval(displayNextImage, sliderPos);
             return this;
         },
+        
+        setspeed: function () {
+            window.console.log('The setSpeedFn function ran');
+            timer = setInterval(displayNextImage, speed);
+           
+        },
+        
+       changeSpeed: function () {
+            window.console.log('The changeSpeedFn function ran');
+            speed = parseInt(window.prompt('The current speed is: ' + (speed/1000)  + ' Seconds \nPlease enter the speed you want to change to'),10) * 1000;
+            //  return speed;
+            this.setspeed();
+             window.console.log();
+         },
+
         createToggleHandler: function () {
             var me = this;
             // CLOSURE TO BE USED AS THE CLICK EVENT HANDLER
@@ -89,4 +108,6 @@ window.addEventListener("load", function () {
     slideshow.loadImages(slides).startSlideShow($("image"), $("caption"));
     // PAUSE THE SLIDESHOW
     $("play_pause").onclick = slideshow.createToggleHandler();
+    $("set_Speed").addEventListener('click', slideshow.changeSpeed("slideshow"));
 });
+
