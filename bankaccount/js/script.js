@@ -53,18 +53,17 @@ window.onload = function () {
 var btnName = window.document.getElementById("btnName");
 var btnDeposit = window.document.getElementById("btnDeposit");
 var btnWithdrawal = window.document.getElementById("btnWithdrawal");
- 
+var b = new bankAccount();
+
        
 btnName.addEventListener('click', function() {
-    var b = new bankAccount();
+
     b.getOwnerName();
 });
 btnDeposit.addEventListener('click', function() {
-    var b = new bankAccount();
     b.deposit(parseInt(window.prompt("Please specify the amount you would like to deposit"),10));
 });
 btnWithdrawal.addEventListener('click', function() {
-    var b = new bankAccount();
     b.withdrawal(parseInt(window.prompt("Please specify the amount you would like to Withdraw")));
 });
 
