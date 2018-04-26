@@ -62,7 +62,7 @@ var createSlideshow = function () {
         
        changeSpeed: function () {
             window.console.log('The changeSpeedFn function ran');
-            speed = parseInt(window.prompt('The current speed is: ' + (speed/1000)  + ' Seconds \nPlease enter the speed you want to change to'),10) * 1000;
+            speed = parseInt(window.prompt('The current speed is: ' + (speed/1000)  + ' Seconds \nPlease enter the speed you want to change to'), 10) * 1000;
             //  return speed;
             this.setspeed();
              window.console.log();
