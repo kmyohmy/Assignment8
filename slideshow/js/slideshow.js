@@ -49,23 +49,23 @@ var createSlideshow = function () {
                 nodes.image = arguments[0];
                 nodes.caption = arguments[1];
             }
-          
-            // timer = setInterval(displayNextImage, sliderPos);
+            timer = setInterval(displayNextImage, speed);
             return this;
         },
         
         setspeed: function () {
             window.console.log('The setSpeedFn function ran');
             timer = setInterval(displayNextImage, speed);
-           
         },
         
-       changeSpeed: function () {
+        changeSpeed: function (setspeed) {
             window.console.log('The changeSpeedFn function ran');
             speed = parseInt(window.prompt('The current speed is: ' + (speed/1000)  + ' Seconds \nPlease enter the speed you want to change to'), 10) * 1000;
-            //  return speed;
-            this.setspeed();
-             window.console.log();
+            window.console.log(speed);
+            setspeed();
+            // window.console.log('The setSpeedFn function ran');
+            // timer = setInterval(displayNextImage, speed);
+          
          },
 
         createToggleHandler: function () {
@@ -108,6 +108,9 @@ window.addEventListener("load", function () {
     slideshow.loadImages(slides).startSlideShow($("image"), $("caption"));
     // PAUSE THE SLIDESHOW
     $("play_pause").onclick = slideshow.createToggleHandler();
-    $("set_Speed").addEventListener('click', slideshow.changeSpeed("slideshow"));
+    // SET THE SPEED 
+    $("set_Speed").addEventListener('click',function(){ 
+             slideshow.changeSpeed(slideshow.setspeed);
+        });
 });
 
